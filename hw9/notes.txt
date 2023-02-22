@@ -1,0 +1,2 @@
+U basically just want to read in the whole input as a char *. Then have two functions: moveForward and moveBackward. These will move along the input and print characters as needed but not modify the input.
+Moveforward and moveBackward will do the same thing but opposite- move forward looks for ‘{‘— if it sees it, it finds the matching ‘}’, and uses that index along with the currentIndex in a call to moveBackward

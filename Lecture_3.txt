@@ -1,0 +1,26 @@
+      Highlits of the lecture: floats, ints, macros, integer manipulation
+
+1. Mantissa bits: bits of a float after the decimal point
+	float representation
+	1 sign bit
+	8 exponent bits
+	23 mantissa bits
+	
+	ShowFloat(0.1) --> shows a float, more accuracy
+		first number in rows with sets of 3 --> sign bit (then exponent bits, then mantissa bits)
+	accuracy is limited
+	Show(1/3) --> int version, rounds, not super accurate
+2. Integer arithmetic and bad float creation
+	float badonethird = 1 / 3; RHS is int, gets 0 --> 0.0
+	better to do 1 / 3.0
+	Explicit conversion
+		"cast" --> ShowFloat(((float) 1)/3); --> explicitly casting type 
+			int x = 5; 
+			(float) x / 3 --> converts to an int explicitly 
+	Better to take default type conversions instead of casting
+3. Issues with floats
+	roundoff error --> can accummulate 
+	using double may help with rounding error, 64 bit float, more exponent and mantissa bits 
+		double doubleinversedenominator = 1.0 / denominator;
+		print("%g\n", doubleinversedenominator);
+	

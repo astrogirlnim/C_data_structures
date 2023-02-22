@@ -1,0 +1,72 @@
+			   Integer types + arythmetic
+	1. Arithmetic operations that work on integers
+		Mathematics: ints = -inf - inf by 1 unit increments (0,1,2,...n) = N
+		Operations: + - * /
+		Can be unboundedly larger	
+			no overflow, results of operations are always defined
+	2. Arithmetic in Computers
+		C - only stores integers of a fixed size (always bounded)
+			have some fixed range
+		Results beyond range may be undefined
+			e.g. signed char c; // hold -128 -> 127
+				c = 120;
+				c = c + 50; // 120 + 50 = 170, out of the range :(
+				printf("%d\n",c) --> could be anything
+					will likely wrap around to some negative value, but no guarantee
+			compiler reserves the rights to do optimizations on numerical operations
+				may not be safe w/overflow
+			Signed data has undefined behavior
+			Signed bit has a special meaning, cannot predict what you will get	
+		Unsigned integer types
+			overflow behavior is defined
+			e.g. unsigned char uc; // 0 - 255
+				uc = 180;
+				uc = uc + 200; //180 + 200 = 380
+				printf("%d\n", uc); //would get 380 - 255
+				//throws away the carried over 
+				//truncates the number
+		AVOID OVERFLOW
+			Try to avoid it and hope for the best
+			Pick types big enough for all data, including intermediate values
+			If dont know what type to pick, use int
+	3. Classic C types
+		char 8
+		short 16
+		int/long 32
+		long long 64 
+	4. C99 fixed width types
+		#include <stdint.h> //required
+		int8_t c; //signed 8bit
+		unt8_t uc; // unsigned 8 bit char
+		int16_t s;
+		int32_t i; int 64_t ll; //etc.
+		//guarantees the EXACT length of a value
+		
+		Running in the zoo, hence not required to define exact types
+	
+Theoretical question: why is C considered an object oriented language vs. a functional language?
+
+	5.C Example
+		Show(0) --> shows 0 in different formats, show is a macro
+		c99  -g3 -Wall -o arithmetic arithmetic.c && ./arithmetic
+	6. 2s complement representation
+		4 bit ints --> 8 4 2 1 
+				0011 --> 2+1 = 3
+				1101 --> -3 or 13?
+		If it's an int, we interpret it as -3 (int range is -8 to 7)
+		If it is an unsigned int, we interpret it as 13 (uint range is 0 - 15)
+		"flip all the bits and add one"
+	7. No way to type a binary value into C
+		easier to do something in hexdex
+		0x prefix means hexadecimal
+	8. Character encoding
+		ASCII 'a' = 97
+			0-31 are control characters --> Crtl-A = = 1, etc.
+			32-63 digits + symbols
+			etc.
+		ISO Latin 1
+	!! --> same as !=0 in C, but more confusing	
+	
+	9. Bitwise operations
+		treat int as a 32-int value
+		apply boolean operations to matching bits

@@ -1,0 +1,134 @@
+			     CPSC 223 Intro Lecture
+	James Aspnes--> Professor
+	1. Introduction
+		12 Assignments 
+		No exams
+		Weekly programming assignments starting in a couple of weeks
+	2. Subject Matter
+		How to write code
+		Assumption: prior programming language required
+		Ideally, done 201
+	3. Language
+		C programming language
+			low-level access to the computer
+			raw cpu with registers and communicating with memory
+				doing this one instruction at a time
+			spends a lot of time thinking about memory addresses/contents of memory
+			high-level programming language
+				tools for organizing this kind of computation
+				access to the hardware
+					not able to do in python/java
+		Not intended to teach u to program in C
+			intended to teach u to build up data structures
+			also to build programs on top of these data structures
+	4. Hierarchy of Abstractions
+		All computing is a lie: tell the user that the computer is doing something more meaningful than what it is
+		Just electrons flying around
+		level 1: Transistors, wires, etc.
+		level 2: CS --> 	bits
+			computer == pile of memory locations
+				bits in memory locations
+			machine code level
+		level 3: basic data types
+			integers, etc.
+			memory
+			values that are actual numbers, etc.
+			low-level code
+		level 4: encoded data 
+			strings
+			higher-level code
+		level 5: complex data structures
+			arrays, linked lists, etc.
+			arrays: abstraction of memory
+			objects that we can manipulate
+	5. Environment
+		Using the zoo: doing it remotely
+			machines
+			connected to a network
+			linux workstations
+			running standard unix
+		have to do the final testing in the zoo, development can be local
+		can use any development tools
+			Prof uses vim
+		code has to work and compile in the zoom environment
+			code has to work and compile in the zoom environmen
+	6. Development
+		local development
+		c compiler up and running, needs to be compatible with c99 gcc version of c
+		copy everything to the zoo
+		usually with scp, sftp
+		test to submit
+		OR can develop in the zoo itself
+			terminal window ssh
+	7. Local environments
+		Linux --> have or can install gcc directly
+	8. Remote development
+		terminal window
+		ssh username@node.zoo.cs.yale.edu  --> picks random node (username for the zoo)
+		hostname --> name of the node
+		w, who --> tells you who is on the machine
+	9. C demonstration
+		return 0 --> true, everything is ok
+		compiling
+			-Wall --> give all the warnings
+	10. Debugging
+		gdb in zoo environment
+			cont --> continue
+			finish --> finish the current routine
+			up --> go up the compiler/code command line
+			n --> next 
+				shows you the iterations and values in a loop (e.g. "next value is blank")
+			list main --> prints main code
+			x/30i main --> prints the 30 instructions of the compiler in main
+				assembly language
+			x/30x main --> machine code printed out in hex
+		gdb run --> runs the program
+		gdb quit --> quits gdb
+	11. c99
+		c99 -g3 -Wall -O3 -o countdown countdown.c
+			-O3 --> optimizer, rewrites the code in the most efficient way possible
+				do every possible optimization you can think of
+				assuming the compiler is written correctly, machine code should be faster	
+	12. printf vs puts
+		printf--> can do variable number of arguments formatted as specified in the chosen output format
+		puts --> put string, raw string that is never going to change, simple routine
+			might be slightly more efficient, and less trouble
+	13. assert.h
+		assert(3 >5);
+			will fail if statement not true
+	14. Pointers and C
+		usually write int main(int argc, char **argv) --> **argv equivalent to *argv[]
+	15. C Data Types
+		all the built in data types are sequences of bits
+		mostly interpreted as binary integer values
+			over some range
+			range is a function of how many bits you put into the basic data type
+		Type names
+			show up in declarations
+			e.g. int x --> x is an int --> x is a 32 bit signed integer
+				bit at the front tells you the sign --> 0 means positive, 1 means negative
+		Encoding
+			2s compliment encoding
+			Imagine we have 2 bit ints --> 00 represents 0, 01 represents 1, 10 --> -2
+			All of these guys are ligned up in order as signed value 
+			Arithmetic
+				00 - 01 = 11 --> 0-1 = -1 (11 is the bit equivalent of -1)
+			Unsigned int
+				unsigned int u;
+				same encoding, but unsigned values (so no bit in the front to encode the number)
+		Integer types
+			char c; --> 8 bits, big enough for 1 ASCII (ISOlatin1) character
+				byte = 8 bit
+			short s; --> 16 bits, good for packing a lot of values in short range
+				-32768 -- 32767 (-2^15 to 2^15-1)
+			int x; --> 32 bits 
+				-2 billion -- 2 billion
+				might be short, might be long 
+				standard c integer type, preferred to long 
+			long xx; --> 32 bits
+				guaranteed to be longer than short
+			long long y; --> 64 bits
+			optional signed char sc;
+				unsigned long long u;
+			doesn't change output with printf
+	
